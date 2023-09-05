@@ -1,17 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>CodePen - A Pen by HxG Official</title>
-  
-
-</head>
-<body>
-<!-- partial:index.partial.html -->
-<!DOCTYPE html>
 <html>
 <head>
-    <title>Pheriwala Payment Calculator</title>
+    <title>BASHIR SCRAPS</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -93,15 +83,72 @@
 
         <p id="totalAmount"></p>
 
-        <button onclick="updatePrices()">Update Item Prices</button>
+        <button onclick="saveAsTextFile()">Save as Text File</button>
     </div>
 
     <script>
-        // JavaScript code here...
+        const selectedItems = [];
+
+        function addItem() {
+            const itemNameInput = document.getElementById("itemName");
+            const itemQuantityInput = document.getElementById("itemQuantity");
+            const itemPriceInput = document.getElementById("itemPrice");
+
+            const itemName = itemNameInput.value;
+            const itemQuantity = parseFloat(itemQuantityInput.value) || 0;
+            const itemPrice = parseFloat(itemPriceInput.value) || 0;
+
+            if (itemQuantity > 0) {
+                const itemCost = itemQuantity * itemPrice;
+                selectedItems.push({ name: itemName, quantity: itemQuantity, price: itemPrice, cost: itemCost });
+                updateItemList();
+
+                // Clear the input fields
+                itemNameInput.value = "";
+                itemQuantityInput.value = "";
+                itemPriceInput.value = "";
+            }
+        }
+
+        function updateItemList() {
+            const itemList = document.getElementById("itemList");
+            itemList.innerHTML = "";
+            
+            for (const item of selectedItems) {
+                const listItem = document.createElement("li");
+                listItem.textContent = `${item.quantity} x ${item.name} (₹${item.price.toFixed(2)} each) - Cost: ₹${item.cost.toFixed(2)}`;
+                itemList.appendChild(listItem);
+            }
+        }
+
+        function calculateTotal() {
+            let totalAmount = 0;
+
+            for (const item of selectedItems) {
+                totalAmount += item.cost;
+            }
+
+            const pheriwalaName = document.getElementById("pheriwalaName").value;
+            const totalAmountDisplay = document.getElementById("totalAmount");
+            totalAmountDisplay.textContent = `Total Amount to Pay ${pheriwalaName}: ₹${totalAmount.toFixed(2)}`;
+        }
+
+        function saveAsTextFile() {
+            const pheriwalaName = document.getElementById("pheriwalaName").value;
+            const totalAmount = document.getElementById("totalAmount").textContent;
+
+            const textToSave = `Pheriwala's Name: ${pheriwalaName}\n${totalAmount}\n\nItems:\n`;
+
+            for (const item of selectedItems) {
+                textToSave += `${item.quantity} x ${item.name} (₹${item.price.toFixed(2)} each) - Cost: ₹${item.cost.toFixed(2)}\n`;
+            }
+
+            const blob = new Blob([textToSave], { type: "text/plain" });
+            const a = document.createElement("a");
+            a.href = URL.createObjectURL(blob);
+            a.download = "payment_details.txt";
+            a.click();
+        }
     </script>
-</body>
-</html>
-<!-- partial -->
-  
 </body>
 </html>
