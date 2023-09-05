@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - A Pen by HxG Official</title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pheriwala Payment Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pheriwala Payment Calculator</h1>
+
+        <label for="pheriwalaName">Pheriwala's Name:</label>
+        <input type="text" id="pheriwalaName" placeholder="Enter Name">
+
+        <label for="itemName">Item Name:</label>
+        <input type="text" id="itemName" placeholder="Enter Item Name">
+
+        <label for="itemQuantity">Quantity:</label>
+        <input type="number" id="itemQuantity" placeholder="Enter Quantity">
+
+        <label for="itemPrice">Custom Price (₹):</label>
+        <input type="number" id="itemPrice" placeholder="Enter Custom Price">
+
+        <button onclick="addItem()">Add Item</button>
+
+        <ul id="itemList"></ul>
+
+        <button onclick="calculateTotal()">Calculate Total Amount</button>
+
+        <p id="totalAmount"></p>
+
+        <button onclick="updatePrices()">Update Item Prices</button>
+    </div>
+
+    <script>
+        // JavaScript code here...
+    </script>
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>
